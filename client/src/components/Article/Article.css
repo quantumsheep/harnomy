@@ -1,0 +1,18 @@
+.card {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 auto;
+}
+
+.cover {
+    width: 150px;
+    height: 150px;
+}
