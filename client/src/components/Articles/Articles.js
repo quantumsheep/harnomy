@@ -26,7 +26,7 @@ class Articles extends Component {
       <Grid container justify="center">
         {
           this.state.articles.map(article => (
-            <Grid item xs={12} sm={8} key={article.id}>
+            <Grid item xs={12} key={article.id}>
               <Article id={article.id} title={article.title} description={article.description} />
             </Grid>
           ))
