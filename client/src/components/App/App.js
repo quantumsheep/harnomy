@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
 import Navbar from '../Navbar/Navbar';
+import SubNavbar from '../SubNavbar/SubNavbar';
 import Articles from '../Articles/Articles';
-import socket from '../../socket';
 import './App.css';
+import Grid from '@material-ui/core/Grid';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    socket.on('title', title => console.log('title'));
-  }
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <br />
-        <Articles />
-      </div>
+      <Grid container className="App" justify="center">
+        <Grid item  xs={12} sm={10} md={7}>
+          <Navbar />
+          <SubNavbar />
+          <br />
+          <Articles />
+        </Grid>
+      </Grid>
     );
   }
 }
