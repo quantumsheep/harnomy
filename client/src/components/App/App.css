@@ -1,0 +1,13 @@
+.SubNavbar {
+    text-align: center;
+    width: 100%;
+  }
+
+  .NavbarContainer {
+    box-shadow: initial !important;
+    background-color: transparent !important;
+  }
+  
+  .Navbar {
+    justify-content: space-between;
+  }

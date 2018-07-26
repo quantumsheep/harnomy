@@ -10,6 +10,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import './LoginDialog.css';
@@ -34,6 +35,10 @@ class LoginDialogMail extends Component {
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
+  }
+
+  login = e => {
+
   }
 
   render() {
@@ -79,8 +84,14 @@ class LoginDialogMail extends Component {
                 }
               />
             </FormControl>
+            <br />
+            <br />
+            <div className="text-right">
+              <Button type="button" onClick={this.login} color="primary">Login</Button>
+            </div>
           </form>
           <br />
+          <Divider />
           <DialogContentText variant="caption">
             If you don't already have an account, you can <a href="" onClick={this.switchToSignUp}>Create One</a>.
           </DialogContentText>

@@ -13,9 +13,11 @@ import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import './SignupDialog.css';
+import Button from '@material-ui/core/Button';
 
 class SignupDialogMail extends Component {
   state = {
+    username: '',
     email: '',
     password: '',
     showPassword: false
@@ -36,6 +38,10 @@ class SignupDialogMail extends Component {
     this.setState({ [prop]: event.target.value });
   }
 
+  register = e => {
+
+  }
+
   render() {
     const { classes, onClose, selectedValue, switchToLogin, ...other } = this.props;
 
@@ -51,7 +57,18 @@ class SignupDialogMail extends Component {
           <form noValidate autoComplete="off">
             <TextField
               required
+              id="username"
+              label="Username"
+              value={this.state.username}
+              onChange={this.handleChange('username')}
+              fullWidth
+              margin="normal"
+              style={{ marginTop: 0 }}
+            />
+            <TextField
+              required
               id="email"
+              type="email"
               label="Email"
               value={this.state.email}
               onChange={this.handleChange('email')}
@@ -60,9 +77,9 @@ class SignupDialogMail extends Component {
               style={{ marginTop: 0 }}
             />
             <FormControl fullWidth required>
-              <InputLabel htmlFor="adornment-password">Password</InputLabel>
+              <InputLabel htmlFor="password">Password</InputLabel>
               <Input
-                id="adornment-password"
+                id="password"
                 type={this.state.showPassword ? 'text' : 'password'}
                 value={this.state.password}
                 onChange={this.handleChange('password')}
@@ -79,8 +96,14 @@ class SignupDialogMail extends Component {
                 }
               />
             </FormControl>
+            <br />
+            <br />
+            <div className="text-right">
+              <Button type="button" onClick={this.register} color="primary">Create the account</Button>
+            </div>
           </form>
           <br />
+          <Divider />
           <DialogContentText variant="caption">
             If you already have an account, you can <a href="" onClick={this.switchToLogin}>Sign in</a>.
           </DialogContentText>
