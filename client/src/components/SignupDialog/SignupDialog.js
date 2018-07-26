@@ -7,10 +7,10 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import './LoginDialog.css';
-import LoginDialogMail from './LoginDialogMail';
+import './SignupDialog.css';
+import SignupDialogMail from './SignupDialogMail';
 
-class LoginDialog extends Component {
+class SignupDialog extends Component {
   state = {
     dialogMailOpen: false
   }
@@ -19,9 +19,9 @@ class LoginDialog extends Component {
     this.props.onClose(this.props.selectedValue);
   }
 
-  switchToSignup = (e) => {
+  switchToLogin = (e) => {
     this.handleClose();
-    this.props.onSwitchToSignup();
+    this.props.onSwitchToLogin();
 
     if (e) {
       e.preventDefault();
@@ -29,15 +29,15 @@ class LoginDialog extends Component {
   }
 
   render() {
-    const { classes, onClose, selectedValue, onSwitchToSignup, ...other } = this.props;
+    const { classes, onClose, selectedValue, onSwitchToLogin, ...other } = this.props;
 
     return (
       <div>
         <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other} className="LoginDialog">
-          <DialogTitle id="simple-dialog-title">Welcome back!</DialogTitle>
+          <DialogTitle id="simple-dialog-title">Welcome to SyncBlog!</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Please select your favorite authentification method.
+              Please select your favorite authentification method in order to create a new account.
           </DialogContentText>
             <br />
             <Divider />
@@ -53,18 +53,19 @@ class LoginDialog extends Component {
               </ListItem>
             </List>
             <DialogContentText variant="caption">
-              If you don't already have an account, you can <a href="" onClick={this.switchToSignup}>Create one</a>.
+              If you already have an account, you can <a href="" onClick={this.switchToLogin}>Sign in</a>.
             </DialogContentText>
           </DialogContent>
         </Dialog>
-        <LoginDialogMail
+        <SignupDialogMail
           open={this.state.dialogMailOpen}
           onClose={() => this.setState({ dialogMailOpen: false })}
-          switchToSignUp={this.switchToSignup}
+          switchToLogin={this.switchToLogin}
         />
       </div>
+
     );
   }
 }
 
-export default LoginDialog;
+export default SignupDialog;
