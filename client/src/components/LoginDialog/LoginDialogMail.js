@@ -53,7 +53,7 @@ class LoginDialogMail extends Component {
           </DialogContentText>
           <br />
           <Divider />
-          <form noValidate autoComplete="off">
+          <form noValidate>
             <TextField
               required
               id="email"
