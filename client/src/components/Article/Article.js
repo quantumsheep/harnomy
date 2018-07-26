@@ -16,8 +16,8 @@ class Article extends Component {
         />
         <div className="details">
           <CardContent className="content">
-            <Typography variant="headline">{this.props.title}</Typography>
-            <Typography variant="subheading" color="textSecondary">
+            <Typography noWrap variant="headline">{this.props.title}</Typography>
+            <Typography noWrap variant="subheading" color="textSecondary">
               {this.props.description}
             </Typography>
           </CardContent>
