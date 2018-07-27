@@ -15,35 +15,37 @@
 // console.log('Socket server listening on port 2000');
 
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+
+const router = require('./routes/router');
 
 const app = express();
+
+const config = {
+    enableCORS: true
+};
+
+/**
+ * Enable CORS if necessary (mostly for development, don't use in prod (with domain name))
+ */
+if (config.enableCORS) {
+    app.use(cors({
+        methods: ['GET', 'POST']
+    }));
+}
 
 app.use(express.json());
 app.use(express.urlencoded({
     extended: false
 }));
 
-app.post('/action/signup', (req, res) => {
-    console.log(req);
-    if (req.body.username && req.body.email && req.body.password) {
-        const verification = {
-            isUsernameError: !(req.body.username && req.body.username.length >= 3),
-            isEmailError: !(req.body.email && req.body.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)),
-            isPasswordError: !(req.body.password && req.body.password.length >= 8),
-        };
+app.use(cookieParser());
 
-        if (!verification.isUsernameError && !verification.isEmailError && !verification.isPasswordError) {
-            res.end(JSON.stringify({}));
-        } else {
-            res.end(JSON.stringify({
-                error: ''
-            }));
-        }
-    } else {
-        res.end(JSON.stringify({
-            error: 'Please complete the form before sending it.'
-        }));
-    }
+router(app);
+
+const port = 2000;
+
+app.listen(port, () => {
+    console.log(`Server launched to http://localhost:${port}`);
 });
-
-app.listen(2000);

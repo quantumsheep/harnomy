@@ -57,9 +57,13 @@ class SignupDialogMail extends Component {
         method: 'POST',
         headers: {
           'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json; charset=utf-8',
         },
-        mode: config.env === 'dev' ? 'no-cors' : 'cors',
+        mode: 'cors',
+        cache: "no-cache",
+        credentials: "same-origin",
+        redirect: "follow",
+        referrer: "no-referrer",
         body: JSON.stringify({
           username: this.state.username,
           email: this.state.email,
