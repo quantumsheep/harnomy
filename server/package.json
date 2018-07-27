@@ -15,8 +15,11 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "helmet": "^3.13.0",
     "mongoose": "^5.2.5",
     "socket.io": "^2.1.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/mongoose": "^5.2.2"
+  }
 }

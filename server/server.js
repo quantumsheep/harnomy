@@ -17,6 +17,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const helmet = require('helmet');
 
 const router = require('./routes/router');
 
@@ -34,6 +35,8 @@ if (config.enableCORS) {
         methods: ['GET', 'POST']
     }));
 }
+
+app.use(helmet());
 
 app.use(express.json());
 app.use(express.urlencoded({

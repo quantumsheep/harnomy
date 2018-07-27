@@ -12,9 +12,10 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import './SignupDialog.css';
 import Button from '@material-ui/core/Button';
 import config from '../../config';
+import './SignupDialog.css';
+import Infobar from '../Infobar/Infobar';
 
 class SignupDialogMail extends Component {
   state = {
@@ -25,6 +26,7 @@ class SignupDialogMail extends Component {
     isUsernameError: false,
     isEmailError: false,
     isPasswordError: false,
+    loginErrors: [],
   }
 
   handleClose = () => {
@@ -45,14 +47,16 @@ class SignupDialogMail extends Component {
   register = e => {
     e.preventDefault();
 
-    this.setState({
+    const actual = {
       isUsernameError: !(this.state.username && this.state.username.length >= 3),
       // eslint-disable-next-line
       isEmailError: !(this.state.email && this.state.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)),
       isPasswordError: !(this.state.password && this.state.password.length >= 8),
-    });
+    };
 
-    if (!this.state.isUsernameError && !this.state.isEmailError && !this.state.isPasswordError) {
+    this.setState(actual);
+
+    if (!actual.isUsernameError && !actual.isEmailError && !actual.isPasswordError) {
       const init = {
         method: 'POST',
         headers: {
@@ -72,13 +76,23 @@ class SignupDialogMail extends Component {
       };
 
       fetch(`${config.httpurl}/action/signup`, init)
-        .then(res => res.text())
+        .then(res => res.json())
         .then(res => {
-          console.log(res);
+          if (res.success) {
+
+          } else {
+            this.setState({
+              loginErrors: res.errors
+            });
+          }
         })
         .catch(err => {
           console.log(err);
         });
+    } else if (this.state.loginErrors) {
+      this.setState({
+        loginErrors: []
+      });
     }
   }
 
@@ -87,13 +101,22 @@ class SignupDialogMail extends Component {
 
     return (
       <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other} className="LoginDialog">
-        <DialogTitle id="simple-dialog-title">Sign in with your mail!</DialogTitle>
+        <DialogTitle id="simple-dialog-title">Create a new account with your mail!</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Enter your account's mail and password.
           </DialogContentText>
           <br />
           <Divider />
+          {
+            this.state.loginErrors.map((error, index) => (
+              <Infobar key={index} message={error} type="error" onClose={() => {
+                this.state.loginErrors.splice(index, 1);
+                this.setState({ loginErrors: this.state.loginErrors });
+              }} />
+            ))
+          }
+          <br />
           <form noValidate onSubmit={this.register}>
             <TextField
               required
