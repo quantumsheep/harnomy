@@ -35,7 +35,7 @@ class SignupDialogMail extends Component {
 
   switchToLogin = (e) => {
     this.handleClose();
-    this.props.switchToLogin();
+    this.props.switchToLogin("Mail");
 
     e.preventDefault();
   }
@@ -79,7 +79,7 @@ class SignupDialogMail extends Component {
         .then(res => res.json())
         .then(res => {
           if (res.success) {
-
+            
           } else {
             this.setState({
               loginErrors: res.errors

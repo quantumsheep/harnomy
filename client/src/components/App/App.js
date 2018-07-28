@@ -14,7 +14,9 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 class App extends Component {
   state = {
     dialogLoginOpen: false,
-    dialogSignupOpen: false
+    dialogLoginType: "",
+    dialogSignupOpen: false,
+    dialogSignupType: "",
   }
 
   render() {
@@ -44,13 +46,15 @@ class App extends Component {
 
             <LoginDialog
               open={this.state.dialogLoginOpen}
+              type={this.state.dialogLoginType}
               onClose={() => this.setState({ dialogLoginOpen: false })}
-              onSwitchToSignup={() => this.setState({ dialogSignupOpen: true })}
+              onSwitchToSignup={(type) => this.setState({ dialogSignupOpen: true, dialogSignupType: type })}
             />
             <SignupDialog
               open={this.state.dialogSignupOpen}
+              type={this.state.dialogSignupType}
               onClose={() => this.setState({ dialogSignupOpen: false })}
-              onSwitchToLogin={() => this.setState({ dialogLoginOpen: true })}
+              onSwitchToLogin={(type) => this.setState({ dialogLoginOpen: true, dialogLoginType: type })}
             />
 
             <Route exact path="/" component={Articles} />

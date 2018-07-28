@@ -21,7 +21,7 @@ class SignupDialog extends Component {
 
   switchToLogin = (e) => {
     this.handleClose();
-    this.props.onSwitchToLogin();
+    this.props.onSwitchToLogin("Mail");
 
     if (e) {
       e.preventDefault();

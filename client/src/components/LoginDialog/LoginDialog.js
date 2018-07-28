@@ -28,8 +28,16 @@ class LoginDialog extends Component {
     }
   }
 
+  openMailLogin = () => {
+    this.setState({ dialogMailOpen: true });
+  }
+
   render() {
-    const { classes, onClose, selectedValue, onSwitchToSignup, ...other } = this.props;
+    const { classes, onClose, selectedValue, onSwitchToSignup, type, ...other } = this.props;
+
+    if(type === "Mail") {
+      this.openMailLogin();
+    }
 
     return (
       <div>
@@ -48,7 +56,7 @@ class LoginDialog extends Component {
               <ListItem button>
                 <ListItemText primary="Google" />
               </ListItem>
-              <ListItem button onClick={() => this.setState({ dialogMailOpen: true })}>
+              <ListItem button onClick={this.openMailLogin}>
                 <ListItemText primary="Mail" />
               </ListItem>
             </List>
