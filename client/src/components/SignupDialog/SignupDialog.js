@@ -19,13 +19,17 @@ class SignupDialog extends Component {
     this.props.onClose(this.props.selectedValue);
   }
 
-  switchToLogin = (e) => {
-    this.handleClose();
-    this.props.onSwitchToLogin("Mail");
+  switchToLoginEv = (e) => {
+    this.switchToLogin();
 
     if (e) {
       e.preventDefault();
     }
+  }
+
+  switchToLogin = (type = "") => {
+    this.handleClose();
+    this.props.onSwitchToLogin(type);
   }
 
   render() {
@@ -53,14 +57,14 @@ class SignupDialog extends Component {
               </ListItem>
             </List>
             <DialogContentText variant="caption">
-              If you already have an account, you can <a href="" onClick={this.switchToLogin}>Sign in</a>.
+              If you already have an account, you can <a href="" onClick={this.switchToLoginEv}>Sign in</a>.
             </DialogContentText>
           </DialogContent>
         </Dialog>
         <SignupDialogMail
           open={this.state.dialogMailOpen}
           onClose={() => this.setState({ dialogMailOpen: false })}
-          switchToLogin={this.switchToLogin}
+          switchToLogin={type => this.switchToLogin(type)}
         />
       </div>
 

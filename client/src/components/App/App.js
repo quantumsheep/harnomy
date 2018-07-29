@@ -19,6 +19,26 @@ class App extends Component {
     dialogSignupType: "",
   }
 
+  openLoginDialog = () => {
+    this.setState({ dialogLoginOpen: true });
+  }
+
+  onSwitchToLogin = (type) => {
+    this.setState({ dialogLoginOpen: true, dialogLoginType: type });
+  }
+
+  onLoginDialogClose = () => {
+    this.setState({ dialogLoginOpen: false });
+  }
+
+  onSwitchToSignup = (type) => {
+    this.setState({ dialogSignupOpen: true, dialogSignupType: type });
+  }
+
+  onSignupDialogClose = () => {
+    this.setState({ dialogSignupOpen: false });
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -32,7 +52,7 @@ class App extends Component {
                   </Typography>
                 </Link>
                 <div>
-                  <Button color="inherit" onClick={() => this.setState({ dialogLoginOpen: true })}>Login</Button>
+                  <Button color="inherit" onClick={this.openLoginDialog}>Login</Button>
                 </div>
               </Toolbar>
             </AppBar>
@@ -49,14 +69,14 @@ class App extends Component {
             <LoginDialog
               open={this.state.dialogLoginOpen}
               type={this.state.dialogLoginType}
-              onClose={() => this.setState({ dialogLoginOpen: false })}
-              onSwitchToSignup={(type) => this.setState({ dialogSignupOpen: true, dialogSignupType: type })}
+              onClose={this.onLoginDialogClose}
+              onSwitchToSignup={this.onSwitchToSignup}
             />
             <SignupDialog
               open={this.state.dialogSignupOpen}
               type={this.state.dialogSignupType}
-              onClose={() => this.setState({ dialogSignupOpen: false })}
-              onSwitchToLogin={(type) => this.setState({ dialogLoginOpen: true, dialogLoginType: type })}
+              onClose={this.onSignupDialogClose}
+              onSwitchToLogin={this.onSwitchToLogin}
             />
 
             <Route exact path="/" component={Articles} />

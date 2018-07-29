@@ -32,12 +32,14 @@ class LoginDialog extends Component {
     this.setState({ dialogMailOpen: true });
   }
 
-  render() {
-    const { classes, onClose, selectedValue, onSwitchToSignup, type, ...other } = this.props;
-
-    if(type === "Mail") {
+  componentDidUpdate = (prevProps) => {
+    if (this.props.type === "Mail" && prevProps.type != "Mail") {
       this.openMailLogin();
     }
+  }
+
+  render() {
+    const { classes, onClose, selectedValue, onSwitchToSignup, type, ...other } = this.props;
 
     return (
       <div>
