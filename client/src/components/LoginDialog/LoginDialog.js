@@ -33,7 +33,7 @@ class LoginDialog extends Component {
   }
 
   componentDidUpdate = (prevProps) => {
-    if (this.props.type === "Mail" && prevProps.type != "Mail") {
+    if (this.props.type === "Mail" && prevProps.type !== "Mail") {
       this.openMailLogin();
     }
   }
