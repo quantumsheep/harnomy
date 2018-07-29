@@ -3,11 +3,16 @@
     width: 100%;
   }
 
-  .NavbarContainer {
-    box-shadow: initial !important;
-    background-color: transparent !important;
-  }
+.NavbarContainer {
+  box-shadow: initial !important;
+  background-color: transparent !important;
+}
   
-  .Navbar {
-    justify-content: space-between;
-  }
+.Navbar {
+  justify-content: space-between;
+}
+
+.logo-link {
+  color: black;
+  text-decoration: none;
+}

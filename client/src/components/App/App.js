@@ -26,9 +26,11 @@ class App extends Component {
           <Grid item xs={12} sm={10} md={7}>
             <AppBar position="static" color="default" className="NavbarContainer">
               <Toolbar variant="dense" className="Navbar">
-                <Typography variant="title" color="inherit" className="logo">
-                  {config.title}
-                </Typography>
+                <Link to="/" className="logo-link">
+                  <Typography variant="title" color="inherit" className="logo">
+                    {config.title}
+                  </Typography>
+                </Link>
                 <div>
                   <Button color="inherit" onClick={() => this.setState({ dialogLoginOpen: true })}>Login</Button>
                 </div>
