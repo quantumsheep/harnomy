@@ -2,6 +2,7 @@
   
 }
 
-.text-right {
-    text-align: right;
+.dialog-actions {
+    display: flex;
+    justify-content: space-between;
 }

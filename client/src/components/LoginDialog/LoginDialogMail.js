@@ -53,7 +53,7 @@ class LoginDialogMail extends Component {
           </DialogContentText>
           <br />
           <Divider />
-          <form noValidate>
+          <form noValidate onSubmit={this.login}>
             <TextField
               required
               id="email"
@@ -86,8 +86,10 @@ class LoginDialogMail extends Component {
             </FormControl>
             <br />
             <br />
-            <div className="text-right">
-              <Button type="button" onClick={this.login} color="primary">Login</Button>
+            <br />
+            <div className="dialog-actions">
+              <Button type="button" onClick={this.handleClose} color="default">Back</Button>
+              <Button type="submit" color="primary">Login</Button>
             </div>
           </form>
           <br />

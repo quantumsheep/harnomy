@@ -79,7 +79,7 @@ class SignupDialogMail extends Component {
         .then(res => res.json())
         .then(res => {
           if (res.success) {
-            
+
           } else {
             this.setState({
               loginErrors: res.errors
@@ -164,7 +164,9 @@ class SignupDialogMail extends Component {
             </FormControl>
             <br />
             <br />
-            <div className="text-right">
+            <br />
+            <div className="dialog-actions">
+              <Button type="button" onClick={this.handleClose} color="default">Back</Button>
               <Button type="submit" color="primary">Create the account</Button>
             </div>
           </form>
