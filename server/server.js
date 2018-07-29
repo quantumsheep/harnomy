@@ -1,27 +1,13 @@
-// const io = require('socket.io')();
-
-// io.on('connection', socket => {
-//     console.log(`New connection!`);
-
-//     socket.emit('new article', {
-//         id: 1,
-//         title: `He's mark`,
-//         description: `Oh I, I'm mark`
-//     });
-// });
-
-// io.listen(2000);
-
-// console.log('Socket server listening on port 2000');
-
 const express = require('express');
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 
 const router = require('./routes/router');
-
-const app = express();
+const sockethandler = require('./services/sockethandler');
 
 const config = {
     enableCORS: true
@@ -47,8 +33,10 @@ app.use(cookieParser());
 
 router(app);
 
+sockethandler(io);
+
 const port = 2000;
 
-app.listen(port, () => {
-    console.log(`Server launched to http://localhost:${port}`);
+server.listen(port, () => {
+    console.log(`HTTP and WebSocket servers launched at http://localhost:${port}`);
 });
