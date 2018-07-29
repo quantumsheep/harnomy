@@ -19,7 +19,18 @@ class Articles extends Component {
     }
 
     socket.on('new article', article => {
-      this.state.articles.push(article);
+      let exists = false;
+
+      for(let existingArticle in this.state.articles) {
+        if(this.state.articles[existingArticle].id === article.id) {
+          exists = true;
+          break;
+        }
+      }
+
+      if(!exists) {
+        this.state.articles.push(article);
+      }
 
       this.setState({ articles: this.state.articles });
     });
