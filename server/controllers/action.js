@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const AccountModel = require('../models/account');
 
 /**
- * Login page
+ * Signup action
  * 
  * @param {express.Request} req 
  * @param {express.Response} res 
