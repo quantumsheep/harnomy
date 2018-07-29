@@ -28,16 +28,16 @@ exports.signup = (req, res) => {
                         { email: req.body.email },
                     ]
                 });
-                
+
                 findSimilarAccounts.then(accounts => {
-                    if (accounts) {
+                    if (accounts.length > 0) {
                         const errors = [];
 
                         accounts.forEach(account => {
                             if (account.username === req.body.username) {
                                 errors.push('There is already an account with this username.');
                             }
-                            
+
                             if (account.email === req.body.email) {
                                 errors.push('There is already an account with this email.');
                             }
@@ -64,7 +64,7 @@ exports.signup = (req, res) => {
                         resolve();
                     }
                 });
-                
+
                 findSimilarAccounts.catch(err => {
                     console.log(err);
                 });
