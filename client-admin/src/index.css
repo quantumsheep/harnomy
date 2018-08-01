@@ -25,6 +25,7 @@ body {
 .Navigation {
     height: 100%;
     min-width: 300px;
+    max-width: 300px;
     background-color: #2d2d2d;
 }
 
@@ -49,32 +50,24 @@ body {
     color: #fff;
 }
 
-main {
-    width: 100%;
-    padding: 15px;
-}
-
-.table {
-    width: 100%;
-}
-
-.btn {
-    display: inline-block;
-    color: #000;
-    padding: 7px;
-    border-color: #000;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: .3s;
-}
-
-.btn:hover {
-    opacity: 0.75;
-}
-
 .title-btn {
     display: flex;
     justify-content: space-between;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.admin-form form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.logo {
+    padding: 10px;
+    width: 200px;
 }
