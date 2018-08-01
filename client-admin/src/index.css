@@ -1,4 +1,80 @@
-.NavigationItem {
-    width: 100%;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+#root {
+    height: 100%;
+}
+
+.SubRouter {
+    height: 100%;
+    display: flex;
+}
+
+.Navigation {
+    height: 100%;
+    min-width: 300px;
+    background-color: #2d2d2d;
+}
+
+.Navigation ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.NavigationItem a {
+    display: block;
     padding: 12px;
+    transition: .3s;
+}
+
+.NavigationItem a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.Navigation a {
+    text-decoration: none;
+    color: #fff;
+}
+
+main {
+    width: 100%;
+    padding: 15px;
+}
+
+.table {
+    width: 100%;
+}
+
+.btn {
+    display: inline-block;
+    color: #000;
+    padding: 7px;
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.btn:hover {
+    opacity: 0.75;
+}
+
+.title-btn {
+    display: flex;
+    justify-content: space-between;
 }

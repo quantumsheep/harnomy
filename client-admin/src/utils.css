@@ -1,0 +1,15 @@
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.float-right {
+    float: right;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
